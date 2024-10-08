@@ -4,7 +4,13 @@ editor_options:
     wrap: 72
 ---
 
-# Gas Chromatography Analytical Methods Template
+# Gas Chromatography Processing
+
+## Getting Started
+
+1.  
+
+## Analytical Methods Template
 
 **Instrument:**
 
