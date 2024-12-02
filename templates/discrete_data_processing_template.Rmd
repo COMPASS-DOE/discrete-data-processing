@@ -40,11 +40,12 @@ cat("Setup")
 
 ## Import Data  
 ```{r Import Data, echo=FALSE}
+
 cat("Import Data")
 
 #set working directory
   #could be from google drive or local drive etc. 
-setwd("file path")
+path <- ("file path")
 
 #Read in Raw Data 
 raw <- read.csv("raw_datafile.csv")
@@ -81,20 +82,11 @@ cat("Assess Standard Curves")
 
 cat("Sample Processing")
 
-#Remove standards if necessary 
+#Remove standards or other checks not needed here if necessary 
 
 
 #Calculate concentrations from standard curve 
 
-
-
-##########make flags for any dilutions needed 
-#highest CH4 standard = 10000
-#highest CO2 standard = 50000
-
-Samples$CH4_Flag <- ifelse(Samples$CH4_Conc_ppm >10000, "Needs Dilution", "Within Range")
-Samples$CO2_Flag <- ifelse(Samples$CO2_Conc_ppm >50000, "Needs Dilution", "Within Range")
-#head(Samples)
 
 ```
 
@@ -145,29 +137,8 @@ cat("Analysis Check Standards")
 
 cat("Dilution Corrections")
 
-#Calculate the concentration when accounting for the dilution factor
+#Calculate the concentration when accounting for the dilution factor if applicable
 
-
-#check results
-#head(Samples)
-
-#quick first look at the samples 
-ch4_samples <-  ggplot(data = Samples, aes(x = Sample_ID, y = CH4_Conc_ppm, fill=CH4_Flag)) +
-       geom_bar(stat = 'identity') + 
-        scale_fill_manual(values=c("red","darkgreen"))+
-        #scale_fill_gradient2(low='red', mid='white', high='blue', space='Lab') + 
-        theme_classic() + labs(x= " ", y="CH4 (ppm)", title="CH4: Green = Within Range") + 
-        theme(legend.position="none") 
-
-
-co2_samples <-  ggplot(data = Samples, aes(x = Sample_ID, y = CO2_Conc_ppm, fill=CO2_Flag)) +
-       geom_bar(stat = 'identity') + 
-        scale_fill_manual(values=c("red", "darkgreen"))+
-        #scale_fill_gradient2(low='red', mid='white', high='blue', space='Lab') + 
-        theme_classic() + labs(x= " ", y="CO2 (ppm)", title="CO2: Green = Within Range") + 
-        theme(legend.position="none") 
-
-ggarrange(ch4_samples, co2_samples, nrow=1, ncol=2)
 
 
 ```
@@ -188,16 +159,16 @@ cat("Visualize Data")
 cat("Export Processed Data")
 
 #set working directory 
-setwd("filepath")
+finalpath <- "file path"
 
 #Prepare data to be exported 
 
-#Add any necessary identifiers to the samples 
+#Add any necessary identifiers to the samples  ### VERY IMPORTANT AND STANDARD FOR PROJECT ####
   #example read in sample IDs list and merge 
   #create required ID columns in R, etc. 
 
 #Write out data frame 
-write.csv(alldat, "COMPASS_CBSYN_SGW_202311_Processed.csv")
+write.csv(alldat, "file_name")
 
 ```
 
